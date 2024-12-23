@@ -4,9 +4,7 @@ import (
 	"awsapp/uploadtos3"
 	"flag"
 	"fmt"
-	"io"
 	"log"
-	"os"
 
 	"github.com/joho/godotenv"
 )
@@ -24,14 +22,6 @@ func main() {
 		log.Fatalln("You need to specify a file path to run this applcation.")
 	}
 
-	file, _ := os.Open(*path)
-	defer file.Close()
-
-	bytes, _ := io.ReadAll(file)
-	text := string(bytes)
-	uploadtos3.Summarize(text)
-	return
-
-	fmt.Println(os.Getenv("AWS_REGION"))
-	uploadtos3.UploadToS3()
+	fmt.Println(*path)
+	uploadtos3.UploadToS3(*path)
 }

@@ -1,4 +1,4 @@
-package uploadtos3
+package dynamodbupload
 
 import (
 	"awsapp/errors"
@@ -101,7 +101,7 @@ func Summarize(content string) string {
 
 }
 
-func storeSummary(key, summary string) {
+func StoreSummary(key, summary string) {
 
 	cfg, err := config.LoadDefaultConfig(context.Background(), config.WithRegion("us-east-1"))
 	errors.HandleError(err, "HandleRequest")
